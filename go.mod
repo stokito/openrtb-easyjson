@@ -1,9 +1,6 @@
-module github.com/bsm/openrtb/v3
+module github.com/stokito/openrtb-easyjson
 
-go 1.13
+go 1.16
 
 require (
-	github.com/onsi/ginkgo v1.10.2
-	github.com/onsi/gomega v1.7.0
-	github.com/stokito/openrtb-easyjson v1.0.0
 )
