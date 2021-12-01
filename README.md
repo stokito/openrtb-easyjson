@@ -6,14 +6,14 @@ Based on github.com/bsm/openrtb
 
 ## Requirements
 
-Requires Go 1.8+ for proper `json.RawMessage` marshaling.
+Requires Go 1.17
 
 ## Installation
 
 To install, use `go get`:
 
 ```shell
-go get -u github.com/stokito/openrtb-easyjson
+go get -u github.com/stokito/openrtb-easyjson@v3.1.0
 ```
 
 ## Usage
