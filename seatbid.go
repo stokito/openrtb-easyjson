@@ -2,7 +2,6 @@ package openrtb
 
 import (
 	"encoding/json"
-	"errors"
 )
 
 // SeatBid contains seat information. At least one of Bid is required.
@@ -16,25 +15,4 @@ type SeatBid struct {
 	Seat  string          `json:"seat,omitempty"`  // ID of the bidder seat optional string ID of the bidder seat on whose behalf this bid is made.
 	Group int             `json:"group,omitempty"` // '1' means impression must be won-lost as a group; default is '0'.
 	Ext   json.RawMessage `json:"ext,omitempty"`
-}
-
-// Validation errors
-var (
-	ErrInvalidSeatBidBid = errors.New("openrtb: seatbid is missing bids")
-)
-
-// Validate required attributes
-func (sb *SeatBid) Validate() error {
-	if len(sb.Bids) == 0 {
-		return ErrInvalidSeatBidBid
-	}
-
-	for i := range sb.Bids {
-		bid := sb.Bids[i]
-		if err := (&bid).Validate(); err != nil {
-			return err
-		}
-	}
-
-	return nil
 }

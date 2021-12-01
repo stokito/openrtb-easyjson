@@ -2,13 +2,6 @@ package openrtb
 
 import (
 	"encoding/json"
-	"errors"
-)
-
-// Validation errors
-var (
-	ErrInvalidBidNoID    = errors.New("openrtb: bid is missing ID")
-	ErrInvalidBidNoImpID = errors.New("openrtb: bid is missing impression ID")
 )
 
 // Bid object contains bid information.
@@ -31,7 +24,7 @@ type Bid struct {
 	AdvDomains  []string            `json:"adomain,omitempty"`        // Advertiser’s primary or top-level domain for advertiser checking; or multiple if imp rotating.
 	Bundle      string              `json:"bundle,omitempty"`         // A platform-specific application identifier intended to be unique to the app and independent of the exchange.
 	ImageURL    string              `json:"iurl,omitempty"`           // Sample image URL.
-	CampaignID  StringOrNumber      `json:"cid,omitempty"`            // Campaign ID that appears with the Ad markup.
+	CampaignID  string              `json:"cid,omitempty"`            // Campaign ID that appears with the Ad markup.
 	CreativeID  string              `json:"crid,omitempty"`           // Creative ID for reporting content issues or defects. This could also be used as a reference to a creative ID that is posted with an exchange.
 	Tactic      string              `json:"tactic,omitempty"`         // Tactic ID to enable buyers to label bids for reporting to the exchange the tactic through which their bid was submitted.
 	Categories  []ContentCategory   `json:"cat,omitempty"`            // IAB content categories of the creative. Refer to List 5.1
@@ -47,15 +40,4 @@ type Bid struct {
 	HeightRatio int                 `json:"hratio,omitempty"`         // Relative height of the creative when expressing size as a ratio.
 	Exp         int                 `json:"exp,omitempty"`            // Advisory as to the number of seconds the bidder is willing to wait between the auction and the actual impression.
 	Ext         json.RawMessage     `json:"ext,omitempty"`
-}
-
-// Validate required attributes
-func (bid *Bid) Validate() error {
-	if bid.ID == "" {
-		return ErrInvalidBidNoID
-	} else if bid.ImpID == "" {
-		return ErrInvalidBidNoImpID
-	}
-
-	return nil
 }

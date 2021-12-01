@@ -1,8 +1,8 @@
 # OpenRTB
 
-[![Build Status](https://travis-ci.org/bsm/openrtb.svg?branch=master)](https://travis-ci.org/bsm/openrtb)
-
-OpenRTB structs and validations for Go.
+OpenRTB protocol definitions and DTOs for Golang.
+Parsed/Serialized with EasyJSON.
+Based on github.com/bsm/openrtb
 
 ## Requirements
 
@@ -13,7 +13,7 @@ Requires Go 1.8+ for proper `json.RawMessage` marshaling.
 To install, use `go get`:
 
 ```shell
-go get github.com/bsm/openrtb/v3
+go get -u github.com/stokito/openrtb-easyjson
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ package main
 
 import (
   "log"
-  "github.com/bsm/openrtb/v3"
+  "github.com/stokito/openrtb-easyjson"
 )
 
 func main() {

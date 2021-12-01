@@ -2,14 +2,6 @@ package openrtb
 
 import (
 	"encoding/json"
-	"errors"
-)
-
-// Validation errors
-var (
-	ErrInvalidVideoNoMIMEs     = errors.New("openrtb: video has no mimes")
-	ErrInvalidVideoNoLinearity = errors.New("openrtb: video linearity missing")
-	ErrInvalidVideoNoProtocols = errors.New("openrtb: video protocols missing")
 )
 
 // Video object must be included directly in the impression object if the impression offered
@@ -43,51 +35,10 @@ type Video struct {
 	Ext             json.RawMessage     `json:"ext,omitempty"`
 }
 
-type jsonVideo Video
-
-// Validate the object
-func (v *Video) Validate() error {
-	if len(v.MIMEs) == 0 {
-		return ErrInvalidVideoNoMIMEs
-	} else if v.Linearity == 0 {
-		return ErrInvalidVideoNoLinearity
-	} else if v.Protocol == 0 && len(v.Protocols) == 0 {
-		return ErrInvalidVideoNoProtocols
-	}
-	return nil
-}
-
 // GetBoxingAllowed returns the boxing-allowed indicator
 func (v *Video) GetBoxingAllowed() int {
 	if v.BoxingAllowed != nil {
 		return *v.BoxingAllowed
 	}
 	return 1
-}
-
-// MarshalJSON custom marshalling with normalization
-func (v *Video) MarshalJSON() ([]byte, error) {
-	v.normalize()
-	return json.Marshal((*jsonVideo)(v))
-}
-
-// UnmarshalJSON custom unmarshalling with normalization
-func (v *Video) UnmarshalJSON(data []byte) error {
-	var h jsonVideo
-	if err := json.Unmarshal(data, &h); err != nil {
-		return err
-	}
-
-	*v = (Video)(h)
-	v.normalize()
-	return nil
-}
-
-func (v *Video) normalize() {
-	if v.Sequence == 0 {
-		v.Sequence = 1
-	}
-	if v.Linearity == 0 {
-		v.Linearity = VideoLinearityLinear
-	}
 }

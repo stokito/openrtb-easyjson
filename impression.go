@@ -31,41 +31,8 @@ type Impression struct {
 	TagID                 string          `json:"tagid,omitempty"`             // IDentifier for specific ad placement or ad tag
 	BidFloor              float64         `json:"bidfloor,omitempty"`          // Bid floor for this impression in CPM
 	BidFloorCurrency      string          `json:"bidfloorcur,omitempty"`       // Currency of bid floor
-	Secure                NumberOrString  `json:"secure,omitempty"`            // Flag to indicate whether the impression requires secure HTTPS URL creative assets and markup.
+	Secure                int             `json:"secure,omitempty"`            // Flag to indicate whether the impression requires secure HTTPS URL creative assets and markup.
 	Exp                   int             `json:"exp,omitempty"`               // Advisory as to the number of seconds that may elapse between the auction and the actual impression.
 	IFrameBusters         []string        `json:"iframebuster,omitempty"`      // Array of names for supportediframe busters.
 	Ext                   json.RawMessage `json:"ext,omitempty"`
-}
-
-func (imp *Impression) assetCount() int {
-	n := 0
-	if imp.Banner != nil {
-		n++
-	}
-	if imp.Video != nil {
-		n++
-	}
-	if imp.Native != nil {
-		n++
-	}
-	return n
-}
-
-// Validate the `imp` object
-func (imp *Impression) Validate() error {
-	if imp.ID == "" {
-		return ErrInvalidImpNoID
-	}
-
-	if count := imp.assetCount(); count > 1 {
-		return ErrInvalidImpMultiAssets
-	}
-
-	if imp.Video != nil {
-		if err := imp.Video.Validate(); err != nil {
-			return err
-		}
-	}
-
-	return nil
 }

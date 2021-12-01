@@ -625,23 +625,6 @@ const (
 // ContentContext as defined in section 5.18.
 type ContentContext int
 
-// UnmarshalJSON implements json.Unmarshaler
-func (n *ContentContext) UnmarshalJSON(data []byte) (err error) {
-	var v int
-
-	if len(data) > 2 && data[0] == '"' && data[len(data)-1] == '"' {
-		err = json.Unmarshal(data[1:len(data)-1], &v)
-	} else {
-		err = json.Unmarshal(data, &v)
-	}
-	if err != nil {
-		return err
-	}
-
-	*n = ContentContext(v)
-	return nil
-}
-
 // 5.18 Content Context
 const (
 	ContentContextVideo       ContentContext = 1

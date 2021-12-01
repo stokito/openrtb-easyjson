@@ -2,14 +2,6 @@ package openrtb
 
 import (
 	"encoding/json"
-	"errors"
-)
-
-// Validation errors
-var (
-	ErrInvalidReqNoID     = errors.New("openrtb: request ID missing")
-	ErrInvalidReqNoImps   = errors.New("openrtb: request has no impressions")
-	ErrInvalidReqMultiInv = errors.New("openrtb: request has multiple inventory sources") // has site and app
 )
 
 // BidRequest is the top-level bid request object contains a globally unique bid request or auction ID.  This "id"
@@ -36,24 +28,4 @@ type BidRequest struct {
 	Source            *Source           `json:"source,omitempty"`  // A Source object that provides data about the inventory source and which entity makes the final decision
 	Regulations       *Regulations      `json:"regs,omitempty"`
 	Ext               json.RawMessage   `json:"ext,omitempty"`
-}
-
-// Validate the request
-func (req *BidRequest) Validate() error {
-	if req.ID == "" {
-		return ErrInvalidReqNoID
-	} else if len(req.Impressions) == 0 {
-		return ErrInvalidReqNoImps
-	} else if req.Site != nil && req.App != nil {
-		return ErrInvalidReqMultiInv
-	}
-
-	for i := range req.Impressions {
-		imp := req.Impressions[i]
-		if err := (&imp).Validate(); err != nil {
-			return err
-		}
-	}
-
-	return nil
 }
