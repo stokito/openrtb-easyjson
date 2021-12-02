@@ -2,7 +2,7 @@
 
 OpenRTB protocol definitions and DTOs for Golang.
 Parsed/Serialized with EasyJSON.
-Based on github.com/bsm/openrtb
+Based on https://github.com/bsm/openrtb
 
 ## Requirements
 
@@ -13,7 +13,7 @@ Requires Go 1.17
 To install, use `go get`:
 
 ```shell
-go get -u github.com/stokito/openrtb-easyjson/v3@v3.3.0
+go get -u github.com/stokito/openrtb-easyjson/v3@v3.5.0
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ package main
 
 import (
   "log"
-  "github.com/stokito/openrtb-easyjson"
+  "github.com/stokito/openrtb-easyjson/v3"
 )
 
 func main() {
@@ -33,11 +33,12 @@ func main() {
   }
   defer file.Close()
 
-  var req *openrtb.BidRequest
-  if err := json.NewDecoder(file).Decode(&req); err != nil {
+  bidReq := &openrtb.BidRequest{}
+  err = easyjson.Unmarshal(file, bidReq)
+  if err != nil {
     log.Fatal(err)
   }
 
-  log.Printf("%+v\n", req)
+  log.Printf("%+v\n", bidReq)
 }
 ```
