@@ -2,7 +2,7 @@ package request
 
 import (
 	"encoding/json"
-	"github.com/stokito/openrtb-easyjson"
+	"github.com/stokito/openrtb-easyjson/v3"
 )
 
 // Video is the native video object.
