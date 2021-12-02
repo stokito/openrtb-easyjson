@@ -17,7 +17,7 @@ var (
 	_ easyjson.Marshaler
 )
 
-func easyjson31527abDecodeGithubComStokitoOpenrtbEasyjson(in *jlexer.Lexer, out *Bid) {
+func easyjson31527abDecodeGithubComStokitoOpenrtbEasyjsonV3(in *jlexer.Lexer, out *Bid) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -165,7 +165,7 @@ func easyjson31527abDecodeGithubComStokitoOpenrtbEasyjson(in *jlexer.Lexer, out 
 		in.Consumed()
 	}
 }
-func easyjson31527abEncodeGithubComStokitoOpenrtbEasyjson(out *jwriter.Writer, in Bid) {
+func easyjson31527abEncodeGithubComStokitoOpenrtbEasyjsonV3(out *jwriter.Writer, in Bid) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -337,23 +337,23 @@ func easyjson31527abEncodeGithubComStokitoOpenrtbEasyjson(out *jwriter.Writer, i
 // MarshalJSON supports json.Marshaler interface
 func (v Bid) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson31527abEncodeGithubComStokitoOpenrtbEasyjson(&w, v)
+	easyjson31527abEncodeGithubComStokitoOpenrtbEasyjsonV3(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v Bid) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson31527abEncodeGithubComStokitoOpenrtbEasyjson(w, v)
+	easyjson31527abEncodeGithubComStokitoOpenrtbEasyjsonV3(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *Bid) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson31527abDecodeGithubComStokitoOpenrtbEasyjson(&r, v)
+	easyjson31527abDecodeGithubComStokitoOpenrtbEasyjsonV3(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *Bid) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson31527abDecodeGithubComStokitoOpenrtbEasyjson(l, v)
+	easyjson31527abDecodeGithubComStokitoOpenrtbEasyjsonV3(l, v)
 }

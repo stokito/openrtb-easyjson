@@ -17,7 +17,7 @@ var (
 	_ easyjson.Marshaler
 )
 
-func easyjson3c9ce8c3DecodeGithubComStokitoOpenrtbEasyjson(in *jlexer.Lexer, out *Video) {
+func easyjson3c9ce8c3DecodeGithubComStokitoOpenrtbEasyjsonV3(in *jlexer.Lexer, out *Video) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -276,7 +276,7 @@ func easyjson3c9ce8c3DecodeGithubComStokitoOpenrtbEasyjson(in *jlexer.Lexer, out
 		in.Consumed()
 	}
 }
-func easyjson3c9ce8c3EncodeGithubComStokitoOpenrtbEasyjson(out *jwriter.Writer, in Video) {
+func easyjson3c9ce8c3EncodeGithubComStokitoOpenrtbEasyjsonV3(out *jwriter.Writer, in Video) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -614,23 +614,23 @@ func easyjson3c9ce8c3EncodeGithubComStokitoOpenrtbEasyjson(out *jwriter.Writer, 
 // MarshalJSON supports json.Marshaler interface
 func (v Video) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3c9ce8c3EncodeGithubComStokitoOpenrtbEasyjson(&w, v)
+	easyjson3c9ce8c3EncodeGithubComStokitoOpenrtbEasyjsonV3(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v Video) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3c9ce8c3EncodeGithubComStokitoOpenrtbEasyjson(w, v)
+	easyjson3c9ce8c3EncodeGithubComStokitoOpenrtbEasyjsonV3(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *Video) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3c9ce8c3DecodeGithubComStokitoOpenrtbEasyjson(&r, v)
+	easyjson3c9ce8c3DecodeGithubComStokitoOpenrtbEasyjsonV3(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *Video) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3c9ce8c3DecodeGithubComStokitoOpenrtbEasyjson(l, v)
+	easyjson3c9ce8c3DecodeGithubComStokitoOpenrtbEasyjsonV3(l, v)
 }

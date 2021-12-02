@@ -17,7 +17,7 @@ var (
 	_ easyjson.Marshaler
 )
 
-func easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjson(in *jlexer.Lexer, out *Device) {
+func easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV3(in *jlexer.Lexer, out *Device) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -46,7 +46,7 @@ func easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjson(in *jlexer.Lexer, out
 				if out.Geo == nil {
 					out.Geo = new(Geo)
 				}
-				easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjson1(in, out.Geo)
+				easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV31(in, out.Geo)
 			}
 		case "dnt":
 			out.DNT = int(in.Int())
@@ -75,7 +75,7 @@ func easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjson(in *jlexer.Lexer, out
 		case "ppi":
 			out.PPI = int(in.Int())
 		case "pxratio":
-			out.PixelRatio = float64(in.Float64())
+			out.PixelRatio = float32(in.Float32())
 		case "js":
 			out.JS = int(in.Int())
 		case "geofetch":
@@ -118,7 +118,7 @@ func easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjson(in *jlexer.Lexer, out
 		in.Consumed()
 	}
 }
-func easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjson(out *jwriter.Writer, in Device) {
+func easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjsonV3(out *jwriter.Writer, in Device) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -136,7 +136,7 @@ func easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjson(out *jwriter.Writer, 
 		} else {
 			out.RawString(prefix)
 		}
-		easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjson1(out, *in.Geo)
+		easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjsonV31(out, *in.Geo)
 	}
 	if in.DNT != 0 {
 		const prefix string = ",\"dnt\":"
@@ -276,7 +276,7 @@ func easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjson(out *jwriter.Writer, 
 		} else {
 			out.RawString(prefix)
 		}
-		out.Float64(float64(in.PixelRatio))
+		out.Float32(float32(in.PixelRatio))
 	}
 	if in.JS != 0 {
 		const prefix string = ",\"js\":"
@@ -434,27 +434,27 @@ func easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjson(out *jwriter.Writer, 
 // MarshalJSON supports json.Marshaler interface
 func (v Device) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjson(&w, v)
+	easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjsonV3(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v Device) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjson(w, v)
+	easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjsonV3(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *Device) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjson(&r, v)
+	easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV3(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *Device) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjson(l, v)
+	easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV3(l, v)
 }
-func easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjson1(in *jlexer.Lexer, out *Geo) {
+func easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV31(in *jlexer.Lexer, out *Geo) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -474,9 +474,9 @@ func easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjson1(in *jlexer.Lexer, ou
 		}
 		switch key {
 		case "lat":
-			out.Latitude = float64(in.Float64())
+			out.Latitude = float32(in.Float32())
 		case "lon":
-			out.Longitude = float64(in.Float64())
+			out.Longitude = float32(in.Float32())
 		case "type":
 			out.Type = LocationType(in.Int())
 		case "accuracy":
@@ -513,7 +513,7 @@ func easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjson1(in *jlexer.Lexer, ou
 		in.Consumed()
 	}
 }
-func easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjson1(out *jwriter.Writer, in Geo) {
+func easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjsonV31(out *jwriter.Writer, in Geo) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -521,7 +521,7 @@ func easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjson1(out *jwriter.Writer,
 		const prefix string = ",\"lat\":"
 		first = false
 		out.RawString(prefix[1:])
-		out.Float64(float64(in.Latitude))
+		out.Float32(float32(in.Latitude))
 	}
 	if in.Longitude != 0 {
 		const prefix string = ",\"lon\":"
@@ -531,7 +531,7 @@ func easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjson1(out *jwriter.Writer,
 		} else {
 			out.RawString(prefix)
 		}
-		out.Float64(float64(in.Longitude))
+		out.Float32(float32(in.Longitude))
 	}
 	if in.Type != 0 {
 		const prefix string = ",\"type\":"

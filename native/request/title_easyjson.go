@@ -17,7 +17,7 @@ var (
 	_ easyjson.Marshaler
 )
 
-func easyjsonE7952480DecodeGithubComStokitoOpenrtbEasyjsonNativeRequest(in *jlexer.Lexer, out *Title) {
+func easyjsonE7952480DecodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest(in *jlexer.Lexer, out *Title) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -52,7 +52,7 @@ func easyjsonE7952480DecodeGithubComStokitoOpenrtbEasyjsonNativeRequest(in *jlex
 		in.Consumed()
 	}
 }
-func easyjsonE7952480EncodeGithubComStokitoOpenrtbEasyjsonNativeRequest(out *jwriter.Writer, in Title) {
+func easyjsonE7952480EncodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest(out *jwriter.Writer, in Title) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -72,23 +72,23 @@ func easyjsonE7952480EncodeGithubComStokitoOpenrtbEasyjsonNativeRequest(out *jwr
 // MarshalJSON supports json.Marshaler interface
 func (v Title) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonE7952480EncodeGithubComStokitoOpenrtbEasyjsonNativeRequest(&w, v)
+	easyjsonE7952480EncodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v Title) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonE7952480EncodeGithubComStokitoOpenrtbEasyjsonNativeRequest(w, v)
+	easyjsonE7952480EncodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *Title) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonE7952480DecodeGithubComStokitoOpenrtbEasyjsonNativeRequest(&r, v)
+	easyjsonE7952480DecodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *Title) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonE7952480DecodeGithubComStokitoOpenrtbEasyjsonNativeRequest(l, v)
+	easyjsonE7952480DecodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest(l, v)
 }

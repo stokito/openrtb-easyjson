@@ -17,7 +17,7 @@ var (
 	_ easyjson.Marshaler
 )
 
-func easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjson(in *jlexer.Lexer, out *Content) {
+func easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjsonV3(in *jlexer.Lexer, out *Content) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -62,7 +62,7 @@ func easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjson(in *jlexer.Lexer, out
 				if out.Producer == nil {
 					out.Producer = new(Producer)
 				}
-				easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjson1(in, out.Producer)
+				easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjsonV31(in, out.Producer)
 			}
 		case "url":
 			out.URL = string(in.String())
@@ -130,7 +130,7 @@ func easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjson(in *jlexer.Lexer, out
 				}
 				for !in.IsDelim(']') {
 					var v2 Data
-					easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjson2(in, &v2)
+					easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjsonV32(in, &v2)
 					out.Data = append(out.Data, v2)
 					in.WantComma()
 				}
@@ -150,7 +150,7 @@ func easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjson(in *jlexer.Lexer, out
 		in.Consumed()
 	}
 }
-func easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjson(out *jwriter.Writer, in Content) {
+func easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjsonV3(out *jwriter.Writer, in Content) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -248,7 +248,7 @@ func easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjson(out *jwriter.Writer, 
 		} else {
 			out.RawString(prefix)
 		}
-		easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjson1(out, *in.Producer)
+		easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjsonV31(out, *in.Producer)
 	}
 	if in.URL != "" {
 		const prefix string = ",\"url\":"
@@ -413,7 +413,7 @@ func easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjson(out *jwriter.Writer, 
 				if v5 > 0 {
 					out.RawByte(',')
 				}
-				easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjson2(out, v6)
+				easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjsonV32(out, v6)
 			}
 			out.RawByte(']')
 		}
@@ -434,27 +434,27 @@ func easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjson(out *jwriter.Writer, 
 // MarshalJSON supports json.Marshaler interface
 func (v Content) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjson(&w, v)
+	easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjsonV3(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v Content) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjson(w, v)
+	easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjsonV3(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *Content) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjson(&r, v)
+	easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjsonV3(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *Content) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjson(l, v)
+	easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjsonV3(l, v)
 }
-func easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjson2(in *jlexer.Lexer, out *Data) {
+func easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjsonV32(in *jlexer.Lexer, out *Data) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -494,7 +494,7 @@ func easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjson2(in *jlexer.Lexer, ou
 				}
 				for !in.IsDelim(']') {
 					var v7 Segment
-					easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjson3(in, &v7)
+					easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjsonV33(in, &v7)
 					out.Segment = append(out.Segment, v7)
 					in.WantComma()
 				}
@@ -514,7 +514,7 @@ func easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjson2(in *jlexer.Lexer, ou
 		in.Consumed()
 	}
 }
-func easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjson2(out *jwriter.Writer, in Data) {
+func easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjsonV32(out *jwriter.Writer, in Data) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -548,7 +548,7 @@ func easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjson2(out *jwriter.Writer,
 				if v8 > 0 {
 					out.RawByte(',')
 				}
-				easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjson3(out, v9)
+				easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjsonV33(out, v9)
 			}
 			out.RawByte(']')
 		}
@@ -565,7 +565,7 @@ func easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjson2(out *jwriter.Writer,
 	}
 	out.RawByte('}')
 }
-func easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjson3(in *jlexer.Lexer, out *Segment) {
+func easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjsonV33(in *jlexer.Lexer, out *Segment) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -604,7 +604,7 @@ func easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjson3(in *jlexer.Lexer, ou
 		in.Consumed()
 	}
 }
-func easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjson3(out *jwriter.Writer, in Segment) {
+func easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjsonV33(out *jwriter.Writer, in Segment) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -646,7 +646,7 @@ func easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjson3(out *jwriter.Writer,
 	}
 	out.RawByte('}')
 }
-func easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjson1(in *jlexer.Lexer, out *Producer) {
+func easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjsonV31(in *jlexer.Lexer, out *Producer) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -708,7 +708,7 @@ func easyjson344736e9DecodeGithubComStokitoOpenrtbEasyjson1(in *jlexer.Lexer, ou
 		in.Consumed()
 	}
 }
-func easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjson1(out *jwriter.Writer, in Producer) {
+func easyjson344736e9EncodeGithubComStokitoOpenrtbEasyjsonV31(out *jwriter.Writer, in Producer) {
 	out.RawByte('{')
 	first := true
 	_ = first
