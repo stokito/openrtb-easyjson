@@ -758,8 +758,8 @@ type Producer ThirdParty
 // (such as IP geo lookup), or by user registration information (for example provided to a publisher
 // through a user registration).
 type Geo struct {
-	Latitude      float64         `json:"lat,omitempty"`           // Latitude from -90 to 90
-	Longitude     float64         `json:"lon,omitempty"`           // Longitude from -180 to 180
+	Latitude      float32         `json:"lat,omitempty"`           // Latitude from -90 to 90
+	Longitude     float32         `json:"lon,omitempty"`           // Longitude from -180 to 180
 	Type          LocationType    `json:"type,omitempty"`          // Indicate the source of the geo data
 	Accuracy      int             `json:"accuracy,omitempty"`      // Estimated location accuracy in meters; recommended when lat/lon are specified and derived from a device’s location services
 	LastFix       int             `json:"lastfix,omitempty"`       // Number of seconds since this geolocation fix was established.

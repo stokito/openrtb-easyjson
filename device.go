@@ -21,7 +21,7 @@ type Device struct {
 	Height       int             `json:"h,omitempty"`              // Physical height of the screen in pixels.
 	Width        int             `json:"w,omitempty"`              // Physical width of the screen in pixels.
 	PPI          int             `json:"ppi,omitempty"`            // Screen size as pixels per linear inch.
-	PixelRatio   float64         `json:"pxratio,omitempty"`        // The ratio of physical pixels to device independent pixels.
+	PixelRatio   float32         `json:"pxratio,omitempty"`        // The ratio of physical pixels to device independent pixels.
 	JS           int             `json:"js,omitempty"`             // Javascript status ("0": Disabled, "1": Enabled)
 	GeoFetch     int             `json:"geofetch,omitempty"`       // Indicates if the geolocation API will be available to JavaScript code running in the banner,
 	FlashVersion string          `json:"flashver,omitempty"`       // Flash version
