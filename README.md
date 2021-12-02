@@ -13,7 +13,7 @@ Requires Go 1.17
 To install, use `go get`:
 
 ```shell
-go get -u github.com/stokito/openrtb-easyjson@v3.1.0
+go get -u github.com/stokito/openrtb-easyjson/v3@v3.3.0
 ```
 
 ## Usage
