@@ -7,7 +7,6 @@ import (
 	easyjson "github.com/mailru/easyjson"
 	jlexer "github.com/mailru/easyjson/jlexer"
 	jwriter "github.com/mailru/easyjson/jwriter"
-	_v3 "github.com/stokito/openrtb-easyjson/v3"
 )
 
 // suppress unused package warning
@@ -49,7 +48,7 @@ func easyjson3b94576aDecodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest(in *jl
 				if out.Title == nil {
 					out.Title = new(Title)
 				}
-				easyjson3b94576aDecodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest1(in, out.Title)
+				(*out.Title).UnmarshalEasyJSON(in)
 			}
 		case "img":
 			if in.IsNull() {
@@ -59,7 +58,7 @@ func easyjson3b94576aDecodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest(in *jl
 				if out.Image == nil {
 					out.Image = new(Image)
 				}
-				easyjson3b94576aDecodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest2(in, out.Image)
+				(*out.Image).UnmarshalEasyJSON(in)
 			}
 		case "video":
 			if in.IsNull() {
@@ -69,7 +68,7 @@ func easyjson3b94576aDecodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest(in *jl
 				if out.Video == nil {
 					out.Video = new(Video)
 				}
-				easyjson3b94576aDecodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest3(in, out.Video)
+				(*out.Video).UnmarshalEasyJSON(in)
 			}
 		case "data":
 			if in.IsNull() {
@@ -79,7 +78,7 @@ func easyjson3b94576aDecodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest(in *jl
 				if out.Data == nil {
 					out.Data = new(Data)
 				}
-				easyjson3b94576aDecodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest4(in, out.Data)
+				(*out.Data).UnmarshalEasyJSON(in)
 			}
 		case "ext":
 			if data := in.Raw(); in.Ok() {
@@ -112,22 +111,22 @@ func easyjson3b94576aEncodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest(out *j
 	if in.Title != nil {
 		const prefix string = ",\"title\":"
 		out.RawString(prefix)
-		easyjson3b94576aEncodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest1(out, *in.Title)
+		(*in.Title).MarshalEasyJSON(out)
 	}
 	if in.Image != nil {
 		const prefix string = ",\"img\":"
 		out.RawString(prefix)
-		easyjson3b94576aEncodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest2(out, *in.Image)
+		(*in.Image).MarshalEasyJSON(out)
 	}
 	if in.Video != nil {
 		const prefix string = ",\"video\":"
 		out.RawString(prefix)
-		easyjson3b94576aEncodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest3(out, *in.Video)
+		(*in.Video).MarshalEasyJSON(out)
 	}
 	if in.Data != nil {
 		const prefix string = ",\"data\":"
 		out.RawString(prefix)
-		easyjson3b94576aEncodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest4(out, *in.Data)
+		(*in.Data).MarshalEasyJSON(out)
 	}
 	if len(in.Ext) != 0 {
 		const prefix string = ",\"ext\":"
@@ -159,413 +158,4 @@ func (v *Asset) UnmarshalJSON(data []byte) error {
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *Asset) UnmarshalEasyJSON(l *jlexer.Lexer) {
 	easyjson3b94576aDecodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest(l, v)
-}
-func easyjson3b94576aDecodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest4(in *jlexer.Lexer, out *Data) {
-	isTopLevel := in.IsStart()
-	if in.IsNull() {
-		if isTopLevel {
-			in.Consumed()
-		}
-		in.Skip()
-		return
-	}
-	in.Delim('{')
-	for !in.IsDelim('}') {
-		key := in.UnsafeFieldName(false)
-		in.WantColon()
-		if in.IsNull() {
-			in.Skip()
-			in.WantComma()
-			continue
-		}
-		switch key {
-		case "type":
-			out.TypeID = DataTypeID(in.Int())
-		case "len":
-			out.Length = int(in.Int())
-		case "ext":
-			if data := in.Raw(); in.Ok() {
-				in.AddError((out.Ext).UnmarshalJSON(data))
-			}
-		default:
-			in.SkipRecursive()
-		}
-		in.WantComma()
-	}
-	in.Delim('}')
-	if isTopLevel {
-		in.Consumed()
-	}
-}
-func easyjson3b94576aEncodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest4(out *jwriter.Writer, in Data) {
-	out.RawByte('{')
-	first := true
-	_ = first
-	{
-		const prefix string = ",\"type\":"
-		out.RawString(prefix[1:])
-		out.Int(int(in.TypeID))
-	}
-	{
-		const prefix string = ",\"len\":"
-		out.RawString(prefix)
-		out.Int(int(in.Length))
-	}
-	if len(in.Ext) != 0 {
-		const prefix string = ",\"ext\":"
-		out.RawString(prefix)
-		out.Raw((in.Ext).MarshalJSON())
-	}
-	out.RawByte('}')
-}
-func easyjson3b94576aDecodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest3(in *jlexer.Lexer, out *Video) {
-	isTopLevel := in.IsStart()
-	if in.IsNull() {
-		if isTopLevel {
-			in.Consumed()
-		}
-		in.Skip()
-		return
-	}
-	in.Delim('{')
-	for !in.IsDelim('}') {
-		key := in.UnsafeFieldName(false)
-		in.WantColon()
-		if in.IsNull() {
-			in.Skip()
-			in.WantComma()
-			continue
-		}
-		switch key {
-		case "mimes":
-			if in.IsNull() {
-				in.Skip()
-				out.MIMEs = nil
-			} else {
-				in.Delim('[')
-				if out.MIMEs == nil {
-					if !in.IsDelim(']') {
-						out.MIMEs = make([]string, 0, 4)
-					} else {
-						out.MIMEs = []string{}
-					}
-				} else {
-					out.MIMEs = (out.MIMEs)[:0]
-				}
-				for !in.IsDelim(']') {
-					var v1 string
-					v1 = string(in.String())
-					out.MIMEs = append(out.MIMEs, v1)
-					in.WantComma()
-				}
-				in.Delim(']')
-			}
-		case "minduration":
-			out.MinDuration = int(in.Int())
-		case "maxduration":
-			out.MaxDuration = int(in.Int())
-		case "protocols":
-			if in.IsNull() {
-				in.Skip()
-				out.Protocols = nil
-			} else {
-				in.Delim('[')
-				if out.Protocols == nil {
-					if !in.IsDelim(']') {
-						out.Protocols = make([]_v3.Protocol, 0, 8)
-					} else {
-						out.Protocols = []_v3.Protocol{}
-					}
-				} else {
-					out.Protocols = (out.Protocols)[:0]
-				}
-				for !in.IsDelim(']') {
-					var v2 _v3.Protocol
-					v2 = _v3.Protocol(in.Int())
-					out.Protocols = append(out.Protocols, v2)
-					in.WantComma()
-				}
-				in.Delim(']')
-			}
-		case "ext":
-			if data := in.Raw(); in.Ok() {
-				in.AddError((out.Ext).UnmarshalJSON(data))
-			}
-		default:
-			in.SkipRecursive()
-		}
-		in.WantComma()
-	}
-	in.Delim('}')
-	if isTopLevel {
-		in.Consumed()
-	}
-}
-func easyjson3b94576aEncodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest3(out *jwriter.Writer, in Video) {
-	out.RawByte('{')
-	first := true
-	_ = first
-	if len(in.MIMEs) != 0 {
-		const prefix string = ",\"mimes\":"
-		first = false
-		out.RawString(prefix[1:])
-		{
-			out.RawByte('[')
-			for v3, v4 := range in.MIMEs {
-				if v3 > 0 {
-					out.RawByte(',')
-				}
-				out.String(string(v4))
-			}
-			out.RawByte(']')
-		}
-	}
-	if in.MinDuration != 0 {
-		const prefix string = ",\"minduration\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
-		out.Int(int(in.MinDuration))
-	}
-	if in.MaxDuration != 0 {
-		const prefix string = ",\"maxduration\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
-		out.Int(int(in.MaxDuration))
-	}
-	if len(in.Protocols) != 0 {
-		const prefix string = ",\"protocols\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
-		{
-			out.RawByte('[')
-			for v5, v6 := range in.Protocols {
-				if v5 > 0 {
-					out.RawByte(',')
-				}
-				out.Int(int(v6))
-			}
-			out.RawByte(']')
-		}
-	}
-	if len(in.Ext) != 0 {
-		const prefix string = ",\"ext\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
-		out.Raw((in.Ext).MarshalJSON())
-	}
-	out.RawByte('}')
-}
-func easyjson3b94576aDecodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest2(in *jlexer.Lexer, out *Image) {
-	isTopLevel := in.IsStart()
-	if in.IsNull() {
-		if isTopLevel {
-			in.Consumed()
-		}
-		in.Skip()
-		return
-	}
-	in.Delim('{')
-	for !in.IsDelim('}') {
-		key := in.UnsafeFieldName(false)
-		in.WantColon()
-		if in.IsNull() {
-			in.Skip()
-			in.WantComma()
-			continue
-		}
-		switch key {
-		case "type":
-			out.TypeID = ImageTypeID(in.Int())
-		case "w":
-			out.Width = int(in.Int())
-		case "wmin":
-			out.WidthMin = int(in.Int())
-		case "h":
-			out.Height = int(in.Int())
-		case "hmin":
-			out.HeightMin = int(in.Int())
-		case "mimes":
-			if in.IsNull() {
-				in.Skip()
-				out.MIMEs = nil
-			} else {
-				in.Delim('[')
-				if out.MIMEs == nil {
-					if !in.IsDelim(']') {
-						out.MIMEs = make([]string, 0, 4)
-					} else {
-						out.MIMEs = []string{}
-					}
-				} else {
-					out.MIMEs = (out.MIMEs)[:0]
-				}
-				for !in.IsDelim(']') {
-					var v7 string
-					v7 = string(in.String())
-					out.MIMEs = append(out.MIMEs, v7)
-					in.WantComma()
-				}
-				in.Delim(']')
-			}
-		case "ext":
-			if data := in.Raw(); in.Ok() {
-				in.AddError((out.Ext).UnmarshalJSON(data))
-			}
-		default:
-			in.SkipRecursive()
-		}
-		in.WantComma()
-	}
-	in.Delim('}')
-	if isTopLevel {
-		in.Consumed()
-	}
-}
-func easyjson3b94576aEncodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest2(out *jwriter.Writer, in Image) {
-	out.RawByte('{')
-	first := true
-	_ = first
-	if in.TypeID != 0 {
-		const prefix string = ",\"type\":"
-		first = false
-		out.RawString(prefix[1:])
-		out.Int(int(in.TypeID))
-	}
-	if in.Width != 0 {
-		const prefix string = ",\"w\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
-		out.Int(int(in.Width))
-	}
-	if in.WidthMin != 0 {
-		const prefix string = ",\"wmin\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
-		out.Int(int(in.WidthMin))
-	}
-	if in.Height != 0 {
-		const prefix string = ",\"h\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
-		out.Int(int(in.Height))
-	}
-	if in.HeightMin != 0 {
-		const prefix string = ",\"hmin\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
-		out.Int(int(in.HeightMin))
-	}
-	if len(in.MIMEs) != 0 {
-		const prefix string = ",\"mimes\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
-		{
-			out.RawByte('[')
-			for v8, v9 := range in.MIMEs {
-				if v8 > 0 {
-					out.RawByte(',')
-				}
-				out.String(string(v9))
-			}
-			out.RawByte(']')
-		}
-	}
-	if len(in.Ext) != 0 {
-		const prefix string = ",\"ext\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
-		out.Raw((in.Ext).MarshalJSON())
-	}
-	out.RawByte('}')
-}
-func easyjson3b94576aDecodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest1(in *jlexer.Lexer, out *Title) {
-	isTopLevel := in.IsStart()
-	if in.IsNull() {
-		if isTopLevel {
-			in.Consumed()
-		}
-		in.Skip()
-		return
-	}
-	in.Delim('{')
-	for !in.IsDelim('}') {
-		key := in.UnsafeFieldName(false)
-		in.WantColon()
-		if in.IsNull() {
-			in.Skip()
-			in.WantComma()
-			continue
-		}
-		switch key {
-		case "len":
-			out.Length = int(in.Int())
-		case "ext":
-			if data := in.Raw(); in.Ok() {
-				in.AddError((out.Ext).UnmarshalJSON(data))
-			}
-		default:
-			in.SkipRecursive()
-		}
-		in.WantComma()
-	}
-	in.Delim('}')
-	if isTopLevel {
-		in.Consumed()
-	}
-}
-func easyjson3b94576aEncodeGithubComStokitoOpenrtbEasyjsonV3NativeRequest1(out *jwriter.Writer, in Title) {
-	out.RawByte('{')
-	first := true
-	_ = first
-	{
-		const prefix string = ",\"len\":"
-		out.RawString(prefix[1:])
-		out.Int(int(in.Length))
-	}
-	if len(in.Ext) != 0 {
-		const prefix string = ",\"ext\":"
-		out.RawString(prefix)
-		out.Raw((in.Ext).MarshalJSON())
-	}
-	out.RawByte('}')
 }

@@ -38,6 +38,16 @@ func easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV3(in *jlexer.Lexer, o
 		switch key {
 		case "ua":
 			out.UA = string(in.String())
+		case "sua":
+			if in.IsNull() {
+				in.Skip()
+				out.Sua = nil
+			} else {
+				if out.Sua == nil {
+					out.Sua = new(UserAgent)
+				}
+				easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV31(in, out.Sua)
+			}
 		case "geo":
 			if in.IsNull() {
 				in.Skip()
@@ -46,7 +56,7 @@ func easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV3(in *jlexer.Lexer, o
 				if out.Geo == nil {
 					out.Geo = new(Geo)
 				}
-				easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV31(in, out.Geo)
+				easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV32(in, out.Geo)
 			}
 		case "dnt":
 			out.DNT = int(in.Int())
@@ -128,6 +138,16 @@ func easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjsonV3(out *jwriter.Writer
 		out.RawString(prefix[1:])
 		out.String(string(in.UA))
 	}
+	if in.Sua != nil {
+		const prefix string = ",\"sua\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjsonV31(out, *in.Sua)
+	}
 	if in.Geo != nil {
 		const prefix string = ",\"geo\":"
 		if first {
@@ -136,7 +156,7 @@ func easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjsonV3(out *jwriter.Writer
 		} else {
 			out.RawString(prefix)
 		}
-		easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjsonV31(out, *in.Geo)
+		easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjsonV32(out, *in.Geo)
 	}
 	if in.DNT != 0 {
 		const prefix string = ",\"dnt\":"
@@ -454,7 +474,7 @@ func (v *Device) UnmarshalJSON(data []byte) error {
 func (v *Device) UnmarshalEasyJSON(l *jlexer.Lexer) {
 	easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV3(l, v)
 }
-func easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV31(in *jlexer.Lexer, out *Geo) {
+func easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV32(in *jlexer.Lexer, out *Geo) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -513,7 +533,7 @@ func easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV31(in *jlexer.Lexer, 
 		in.Consumed()
 	}
 }
-func easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjsonV31(out *jwriter.Writer, in Geo) {
+func easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjsonV32(out *jwriter.Writer, in Geo) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -642,6 +662,234 @@ func easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjsonV31(out *jwriter.Write
 			out.RawString(prefix)
 		}
 		out.Int(int(in.UTCOffset))
+	}
+	if len(in.Ext) != 0 {
+		const prefix string = ",\"ext\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Raw((in.Ext).MarshalJSON())
+	}
+	out.RawByte('}')
+}
+func easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV31(in *jlexer.Lexer, out *UserAgent) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "browsers":
+			easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV33(in, &out.Browsers)
+		case "platform":
+			easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV33(in, &out.Platform)
+		case "mobile":
+			out.Mobile = int(in.Int())
+		case "architecture":
+			out.Architecture = string(in.String())
+		case "bitness":
+			out.Bitness = string(in.String())
+		case "model":
+			out.Model = string(in.String())
+		case "source":
+			out.Source = string(in.String())
+		case "ext":
+			if data := in.Raw(); in.Ok() {
+				in.AddError((out.Ext).UnmarshalJSON(data))
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjsonV31(out *jwriter.Writer, in UserAgent) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	if true {
+		const prefix string = ",\"browsers\":"
+		first = false
+		out.RawString(prefix[1:])
+		easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjsonV33(out, in.Browsers)
+	}
+	if true {
+		const prefix string = ",\"platform\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjsonV33(out, in.Platform)
+	}
+	if in.Mobile != 0 {
+		const prefix string = ",\"mobile\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Int(int(in.Mobile))
+	}
+	if in.Architecture != "" {
+		const prefix string = ",\"architecture\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.Architecture))
+	}
+	if in.Bitness != "" {
+		const prefix string = ",\"bitness\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.Bitness))
+	}
+	if in.Model != "" {
+		const prefix string = ",\"model\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.Model))
+	}
+	if in.Source != "" {
+		const prefix string = ",\"source\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.Source))
+	}
+	if len(in.Ext) != 0 {
+		const prefix string = ",\"ext\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Raw((in.Ext).MarshalJSON())
+	}
+	out.RawByte('}')
+}
+func easyjson3073ac56DecodeGithubComStokitoOpenrtbEasyjsonV33(in *jlexer.Lexer, out *BrandVersion) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "brand":
+			out.Brand = string(in.String())
+		case "version":
+			if in.IsNull() {
+				in.Skip()
+				out.Version = nil
+			} else {
+				in.Delim('[')
+				if out.Version == nil {
+					if !in.IsDelim(']') {
+						out.Version = make([]string, 0, 4)
+					} else {
+						out.Version = []string{}
+					}
+				} else {
+					out.Version = (out.Version)[:0]
+				}
+				for !in.IsDelim(']') {
+					var v1 string
+					v1 = string(in.String())
+					out.Version = append(out.Version, v1)
+					in.WantComma()
+				}
+				in.Delim(']')
+			}
+		case "ext":
+			if data := in.Raw(); in.Ok() {
+				in.AddError((out.Ext).UnmarshalJSON(data))
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3073ac56EncodeGithubComStokitoOpenrtbEasyjsonV33(out *jwriter.Writer, in BrandVersion) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	if in.Brand != "" {
+		const prefix string = ",\"brand\":"
+		first = false
+		out.RawString(prefix[1:])
+		out.String(string(in.Brand))
+	}
+	if len(in.Version) != 0 {
+		const prefix string = ",\"version\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		{
+			out.RawByte('[')
+			for v2, v3 := range in.Version {
+				if v2 > 0 {
+					out.RawByte(',')
+				}
+				out.String(string(v3))
+			}
+			out.RawByte(']')
+		}
 	}
 	if len(in.Ext) != 0 {
 		const prefix string = ",\"ext\":"
